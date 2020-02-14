@@ -10,8 +10,8 @@ env:
   TERRAFORM_ACTIONS_COMMENT: true
 
 jobs:
-  on-pull-request:
-    name: On Pull Request
+  terraform:
+    name: terraform
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
