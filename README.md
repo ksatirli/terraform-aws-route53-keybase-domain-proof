@@ -1,8 +1,6 @@
-# Terraform Module: Keybase Domain Verification DNS Record
+# Terraform Module: Keybase Domain Proofs
 
-TODO
-
-> This repository is a [Terraform](https://terraform.io/) Module for managing AWS Route 53 [DNS Records](https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html) to enable verification of [GitHub Organization Domains](https://help.github.com/en/articles/verifying-your-organizations-domain).
+> [Terraform](https://terraform.io/) Module for managing AWS Route 53 [DNS Records](https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html) to enable verification of [Keybase Domain Proofs](https://help.github.com/en/articles/verifying-your-organizations-domain).
 
 ## Table of Contents
 
@@ -29,8 +27,8 @@ This module depends on a correctly configured [AWS Provider](https://www.terrafo
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "org-verification-record" {
-  source              = "operatehappy/route53-github-verification-records/aws"
+module "keybase-site-verification" {
+  source              = "operatehappy/route53-keybase-site-verification/aws"
   version             = "1.0.0"
   zone_id             = "Z3P5QSUBK4POTI"
   verification_record = "38834dez61"
@@ -45,16 +43,16 @@ Available variables are listed below, along with their default values:
 
 | variable            | type   | description                            | default |
 |---------------------|--------|----------------------------------------|---------|
-| github_organization | string | GitHub Organization identifier         |         |
 | zone_id             | string | ID of the DNS Zone to store Records in |         |
 | record_ttl          | string | TTL for all DNS records                | `300`   |
-| verification_record | string | Verification TXT Record                |         |
+| verification_record | string | Keybase Site Verification Record       |         |
 
 Additionally, the following variables are generated as [locals](https://www.terraform.io/docs/configuration/locals.html):
 
-| key       | value                           |
-|-----------|---------------------------------|
-| zone_name | `${data.aws_route53_zone.name}` |
+| key                   | value                                                  |
+|-----------------------|--------------------------------------------------------|
+| `zone_name`           | `data.aws_route53_zone.zone.name`                      |
+| `verification_record` | "keybase-site-verification=${var.verification_record}" |
 
 ### Module Outputs
 
