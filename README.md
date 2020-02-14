@@ -1,10 +1,10 @@
-# Terraform Module: Keybase Domain Proofs
+# Terraform Module: Keybase Domain Proof
 
-> [Terraform](https://terraform.io/) Module for managing AWS Route 53 [DNS Records](https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html) to enable verification of [Keybase Domain Proofs](https://help.github.com/en/articles/verifying-your-organizations-domain).
+> [Terraform](https://terraform.io/) Module for managing AWS Route 53 [DNS Records](https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html) for a _Keybase Domain Proof_.
 
 ## Table of Contents
 
-- [Terraform Module: Keybase Domain Verification DNS Record](#terraform-module-keybase-domain-verification-dns-record)
+- [Terraform Module: Keybase Domain Proof](#terraform-module-keybase-domain-proof)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Dependencies](#dependencies)
@@ -27,32 +27,32 @@ This module depends on a correctly configured [AWS Provider](https://www.terrafo
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "keybase-site-verification" {
-  source              = "operatehappy/route53-keybase-site-verification/aws"
+module "keybase-domain-proof" {
+  source              = "operatehappy/route53-keybase-domain-proof/aws"
   version             = "1.0.0"
   zone_id             = "Z3P5QSUBK4POTI"
-  verification_record = "38834dez61"
+  domain_proof        = "38834dez61"
 }
 ```
 
-Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/route53-github-verification-records) using `terraform get`.
+Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/route53-keybase-domain-proof) using `terraform get`.
 
 ### Module Variables
 
 Available variables are listed below, along with their default values:
 
-| variable            | type   | description                            | default |
-|---------------------|--------|----------------------------------------|---------|
-| zone_id             | string | ID of the DNS Zone to store Records in |         |
-| record_ttl          | string | TTL for all DNS records                | `300`   |
-| verification_record | string | Keybase Site Verification Record       |         |
+| variable       | type   | description                            | default |
+|----------------|--------|----------------------------------------|---------|
+| `zone_id`      | string | ID of the DNS Zone to store Records in |         |
+| `record_ttl`   | string | TTL for all DNS records                | `300`   |
+| `domain_proof` | string | Keybase Domain Proof Record            |         |
 
 Additionally, the following variables are generated as [locals](https://www.terraform.io/docs/configuration/locals.html):
 
-| key                   | value                                                  |
-|-----------------------|--------------------------------------------------------|
-| `zone_name`           | `data.aws_route53_zone.zone.name`                      |
-| `verification_record` | "keybase-site-verification=${var.verification_record}" |
+| key            | value                                                  |
+|----------------|--------------------------------------------------------|
+| `zone_name`    | `data.aws_route53_zone.zone.name`                      |
+| `domain_proof` | "keybase-site-verification=${var.verification_record}" |
 
 ### Module Outputs
 
@@ -60,7 +60,7 @@ Available outputs are listed below, along with their description
 
 | output         | description                                               |
 |----------------|-----------------------------------------------------------|
-| `verification` | interpolated value of `aws_route53_record.ownership.name` |
+| `domain_proof` | interpolated value of `aws_route53_record.ownership.name` |
 | `zone_name`    | interpolated value of `local.zone_name`                   |
 
 ## Author Information

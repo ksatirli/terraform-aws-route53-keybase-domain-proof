@@ -9,9 +9,9 @@ variable "record_ttl" {
   default     = 300
 }
 
-variable "verification_record" {
+variable "domain_proof" {
   type        = string
-  description = "Verification TXT Record"
+  description = "Domain Proof TXT Record (without `keybase-site-verification=` prefix)"
 }
 
 data "aws_route53_zone" "zone" {
@@ -19,6 +19,6 @@ data "aws_route53_zone" "zone" {
 }
 
 locals {
-  zone_name           = data.aws_route53_zone.zone.name // NOTE: trailing period is added by data source
-  verification_record = "keybase-site-verification=${var.verification_record}"
+  zone_name    = data.aws_route53_zone.zone.name // NOTE: trailing period is added by data source
+  domain_proof = "keybase-site-verification=${var.domain_proof}"
 }
