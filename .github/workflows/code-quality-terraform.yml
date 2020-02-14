@@ -48,3 +48,4 @@ jobs:
           tf_actions_comment: ${{ env.TERRAFORM_ACTIONS_COMMENT }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_REGION: xx-xxxx-0
