@@ -9,8 +9,8 @@
   - [Requirements](#requirements)
   - [Dependencies](#dependencies)
   - [Usage](#usage)
-    - [Module Variables](#module-variables)
-    - [Module Outputs](#module-outputs)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
   - [Author Information](#author-information)
   - [License](#license)
 
@@ -37,9 +37,7 @@ module "keybase-domain-proof" {
 
 Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/route53-keybase-domain-proof) using `terraform get`.
 
-### Module Variables
-
-Available variables are listed below, along with their default values:
+### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
@@ -47,9 +45,7 @@ Available variables are listed below, along with their default values:
 | zone_id | ID of the DNS Zone to store Records in | `string` | n/a |
 | record_ttl | TTL for all DNS records | `string` | `300` |
 
-### Module Outputs
-
-Available outputs are listed below, along with their description
+### Outputs
 
 | Name | Description |
 |------|-------------|
