@@ -41,27 +41,20 @@ Then, fetch the module from the [Terraform Registry](https://registry.terraform.
 
 Available variables are listed below, along with their default values:
 
-| variable       | type   | description                            | default |
-|----------------|--------|----------------------------------------|---------|
-| `zone_id`      | string | ID of the DNS Zone to store Records in |         |
-| `record_ttl`   | string | TTL for all DNS records                | `300`   |
-| `domain_proof` | string | Keybase Domain Proof Record            |         |
-
-Additionally, the following variables are generated as [locals](https://www.terraform.io/docs/configuration/locals.html):
-
-| key            | value                                                  |
-|----------------|--------------------------------------------------------|
-| `zone_name`    | `data.aws_route53_zone.zone.name`                      |
-| `domain_proof` | "keybase-site-verification=${var.verification_record}" |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| domain_proof | Domain Proof TXT Record (without `keybase-site-verification=` prefix) | `string` | n/a |
+| zone_id | ID of the DNS Zone to store Records in | `string` | n/a |
+| record_ttl | TTL for all DNS records | `string` | `300` |
 
 ### Module Outputs
 
 Available outputs are listed below, along with their description
 
-| output         | description                                               |
-|----------------|-----------------------------------------------------------|
-| `domain_proof` | interpolated value of `aws_route53_record.ownership.name` |
-| `zone_name`    | interpolated value of `local.zone_name`                   |
+| Name | Description |
+|------|-------------|
+| domain_proof | interpolated value of `aws_route53_record.domain_proof.name` |
+| zone_name | interpolated value of `local.zone_name` |
 
 ## Author Information
 
