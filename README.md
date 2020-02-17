@@ -1,6 +1,6 @@
 # Terraform Module: Keybase Domain Proof
 
-> [Terraform](https://terraform.io/) Module for managing AWS Route 53 [DNS Records](https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html) for a _Keybase Domain Proof_.
+> Terraform Module for managing AWS Route 53 DNS Records for a _Keybase Domain Proof_.
 
 ## Table of Contents
 
