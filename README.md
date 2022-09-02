@@ -1,4 +1,4 @@
-# AWS WorkMail DNS Records
+# Keybase Domain Proofs
 
 > This Terraform Module manages DNS records for [Keybase Domain Proofs](https://book.keybase.io/guides/proof-integration-guide).
 
