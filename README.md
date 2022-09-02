@@ -1,5 +1,8 @@
 # Terraform Module: Keybase Domain Proof
 
+> **Warning**
+ > This module has reached _End-of-Life_ status. A re-built version will be available via [ksatirli/terraform-aws-route53-keybase-domain-proof](https://github.com/ksatirli/terraform-aws-route53-keybase-domain-proof).
+
 > Terraform Module for managing AWS Route 53 DNS Records for a _Keybase Domain Proof_.
 
 ## Table of Contents
