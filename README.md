@@ -1,65 +1,48 @@
-# Terraform Module: Keybase Domain Proof
+# Keybase Domain Proofs
 
-> **Warning**
- > This module has reached _End-of-Life_ status. A re-built version will be available via [ksatirli/terraform-aws-route53-keybase-domain-proof](https://github.com/ksatirli/terraform-aws-route53-keybase-domain-proof).
+> This Terraform Module manages DNS records for [Keybase Domain Proofs](https://book.keybase.io/guides/proof-integration-guide).
 
-> Terraform Module for managing AWS Route 53 DNS Records for a _Keybase Domain Proof_.
-
-## Table of Contents
-
-- [Terraform Module: Keybase Domain Proof](#terraform-module-keybase-domain-proof)
-  - [Table of Contents](#table-of-contents)
-  - [Requirements](#requirements)
-  - [Dependencies](#dependencies)
-  - [Usage](#usage)
-    - [Inputs](#inputs)
-    - [Outputs](#outputs)
-  - [Author Information](#author-information)
-  - [License](#license)
+<!-- TOC -->
+* [Keybase Domain Proofs](#keybase-domain-proofs)
+  * [Requirements](#requirements)
+  * [Usage](#usage)
+    * [Inputs](#inputs)
+    * [Outputs](#outputs)
+  * [Author Information](#author-information)
+  * [License](#license)
+    * [Inputs](#inputs)
+    * [Outputs](#outputs)
+<!-- TOC -->
 
 ## Requirements
 
-This module requires Terraform version `0.13.0` or newer.
-
-## Dependencies
-
-This module depends on a correctly configured [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) in your Terraform codebase.
+* Amazon Web Services (AWS) [Account](https://aws.amazon.com/account/)
+* Keybase [Account](https://keybase.io/)
+* Terraform `1.1.x` or newer.
 
 ## Usage
 
-Add the module to your Terraform resources like so:
+For examples, see the [./examples](https://github.com/ksatirli/terraform-aws-route53-keybase-domain-proof/tree/main/examples) directory.
 
-```hcl
-module "keybase_domain_proof" {
-  source              = "operatehappy/route53-keybase-domain-proof/aws"
-  version             = "1.1.0"
-  zone_id             = "Z3P5QSUBK4POTI"
-  domain_proof        = "38834dez61"
-}
-```
-
-Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/route53-keybase-domain-proof) using `terraform get`.
-
+<!-- BEGIN_TF_DOCS -->
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| domain_proof | Domain Proof TXT Record (without `keybase-site-verification=` prefix) | `string` | n/a |
-| zone_id | ID of the DNS Zone to store Records in | `string` | n/a |
-| record_ttl | TTL for all DNS records | `string` | `300` |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| domain_proof | Domain Proof TXT Record (without `keybase-site-verification=` prefix). | `string` | n/a | yes |
+| zone_id | ID of the DNS Zone to store DNS Record in. | `string` | n/a | yes |
+| record_ttl | TTL for the DNS record. | `string` | `300` | no |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
-| domain_proof | interpolated value of `aws_route53_record.domain_proof.name` |
-| zone_name | interpolated value of `local.zone_name` |
+| aws_route53_record | Exported Attributes for `aws_route53_record`. |
+<!-- END_TF_DOCS -->
 
 ## Author Information
 
-This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-aws-route53-keybase-domain-proof/graphs/contributors).
-
-Development of this module was sponsored by [Operate Happy](https://github.com/operatehappy).
+This module is maintained by the contributors listed on [GitHub](https://github.com/ksatirli/terraform-aws-route53-keybase-domain-proof/graphs/contributors).
 
 ## License
 
@@ -70,3 +53,20 @@ You may obtain a copy of the License at [apache.org/licenses/LICENSE-2.0](http:/
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an _"AS IS"_ basis, without WARRANTIES or conditions of any kind, either express or implied.
 
 See the License for the specific language governing permissions and limitations under the License.
+
+<!-- BEGIN_TF_DOCS -->
+### Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| domain_proof | Domain Proof TXT Record (without `keybase-site-verification=` prefix) | `string` | n/a | yes |
+| zone_id | ID of the DNS Zone to store Records in | `string` | n/a | yes |
+| record_ttl | TTL for all DNS records | `string` | `300` | no |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| domain_proof | interpolated value of `aws_route53_record.domain_proof.name` |
+| zone_name | interpolated value of `local.zone_name` |
+<!-- END_TF_DOCS -->

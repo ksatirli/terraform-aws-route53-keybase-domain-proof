@@ -1,8 +1,11 @@
-// verify Domain ownership
-resource "aws_route53_record" "domain_proof" {
+# see https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
+resource "aws_route53_record" "main" {
   zone_id = var.zone_id
-  name    = "_keybase.${local.zone_name}"
+  name    = "_keybase.${data.aws_route53_zone.zone.name}"
   type    = "TXT"
   ttl     = var.record_ttl
-  records = [local.domain_proof]
+
+  records = [
+    "keybase-site-verification=${var.domain_proof}"
+  ]
 }
